@@ -1,0 +1,158 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Brand purple — extracted from the Enweigh logo (#3E2D63 family) */
+  --color-brand-50: #f8f6fd;
+  --color-brand-100: #f0ebfa;
+  --color-brand-200: #e2d8f5;
+  --color-brand-300: #c9b6eb;
+  --color-brand-400: #a588d9;
+  --color-brand-500: #7e5abf;
+  --color-brand-600: #5e3ba3;
+  --color-brand-700: #4b2d85;
+  --color-brand-800: #3e2d63;
+  --color-brand-900: #2c1c4e;
+  --color-brand-950: #1d1138;
+
+  /* Purple-tinted neutrals for text/surfaces on white */
+  --color-ink-900: #231a38;
+  --color-ink-800: #2e2446;
+  --color-ink-700: #403657;
+  --color-ink-600: #574d6e;
+  --color-ink-500: #6e6486;
+  --color-ink-400: #8c83a3;
+  --color-ink-300: #aba3be;
+
+  --color-surface: #ffffff;
+  --color-mist: #f7f5fb;
+  --color-mist-2: #efecf7;
+
+  --font-display: 'Sora', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-marquee-rev: marquee-rev 42s linear infinite;
+  --animate-pulse-slow: pulse-slow 6s ease-in-out infinite;
+  --animate-float: float 10s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-rev {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.08); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+
+@layer base {
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink-700);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-brand-600);
+    color: #ffffff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1eefa;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d6cbec;
+    border-radius: 9px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand-400);
+  }
+}
+
+@utility container-x {
+  width: 100%;
+  max-width: 82rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (min-width: 768px) {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* Faint technical grid used behind hero / sections (light) */
+@utility tech-grid {
+  background-image:
+    linear-gradient(to right, rgba(94, 59, 163, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(94, 59, 163, 0.05) 1px, transparent 1px);
+  background-size: 62px 62px;
+}
+
+@utility text-gradient-brand {
+  background-image: linear-gradient(100deg, var(--color-brand-700) 0%, var(--color-brand-500) 45%, var(--color-brand-600) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-soft {
+  background-image: linear-gradient(180deg, var(--color-ink-900) 0%, var(--color-ink-600) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility hairline {
+  background: linear-gradient(90deg, transparent, rgba(94, 59, 163, 0.18) 18%, rgba(94, 59, 163, 0.18) 82%, transparent);
+  height: 1px;
+}
+
+@utility glow-brand {
+  box-shadow:
+    0 0 0 1px rgba(94, 59, 163, 0.18),
+    0 14px 40px -12px rgba(94, 59, 163, 0.45),
+    0 30px 90px -30px rgba(94, 59, 163, 0.4);
+}
+
+@utility card-soft {
+  background: #ffffff;
+  border: 1px solid rgba(94, 59, 163, 0.1);
+  box-shadow: 0 1px 2px rgba(35, 26, 56, 0.04), 0 12px 32px -18px rgba(94, 59, 163, 0.22);
+}
+
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

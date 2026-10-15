@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output (Vercel builds from source)
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Editor / OS
+.DS_Store
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
