@@ -100,7 +100,7 @@ export default function Contact() {
   const detailItems = [
     {
       label: 'Call Direct',
-      value: `${COMPANY.phonePrimary} · ${COMPANY.phoneSecondary}`,
+      value: COMPANY.phonePrimary,
       href: `tel:${COMPANY.phonePrimaryRaw}`,
       icon: (
         <path d="M4 3h3l1.5 4L7 8.5a11 11 0 0 0 5.5 5.5l1.5-1.5 4 1.5v3a1 1 0 0 1-1 1A15 15 0 0 1 3 4a1 1 0 0 1 1-1z" />

@@ -54,9 +54,6 @@ export default function Footer() {
                 <a href={`tel:${COMPANY.phonePrimaryRaw}`} className="transition-colors hover:text-white">{COMPANY.phonePrimary}</a>
               </li>
               <li>
-                <a href={`tel:${COMPANY.phoneSecondaryRaw}`} className="transition-colors hover:text-white">{COMPANY.phoneSecondary}</a>
-              </li>
-              <li>
                 <a href={`mailto:${COMPANY.email}`} className="transition-colors hover:text-white">{COMPANY.email}</a>
               </li>
               <li className="text-brand-100/50">{COMPANY.address}</li>

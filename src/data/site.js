@@ -2,17 +2,13 @@ export const COMPANY = {
   name: 'Enweigh India Pvt. Ltd.',
   short: 'Enweigh',
   tagline: 'Precision Weighing & Feeding Systems',
-  phonePrimary: '+91 99696 76167',
-  phonePrimaryRaw: '+919969676167',
-  phoneSecondary: '+91 83560 73597',
-  phoneSecondaryRaw: '+918356073597',
-  phoneTertiary: '+91 98692 64635',
-  phoneTertiaryRaw: '+919869264635',
+  phonePrimary: '+91 98692 64635',
+  phonePrimaryRaw: '+919869264635',
   email: 'sales@enweigh.in',
   emailMarketing: 'marketing@enweigh.in',
   emailAlt: 'info@enweigh.in',
-  whatsapp: '+91 99696 76167',
-  whatsappRaw: '919969676167',
+  whatsapp: '+91 98692 64635',
+  whatsappRaw: '919869264635',
   address: 'A 810, Jaswanti Business Center, Kanchpada, Malad (West), Mumbai — 400064, Maharashtra, India',
   website: 'www.enweigh.in',
   logo: 'images/enweigh-logo.png',
@@ -495,6 +491,19 @@ export const INDUSTRIES = [
   'Fertilizer',
   'Power & Boilers',
   'Ceramics & AAC',
+]
+
+export const CLIENTS = [
+  'Tata Steel',
+  'ACC Limited',
+  'Ambuja Cements',
+  'Dalmia Cement',
+  'Shree Cement',
+  'Jindal Stainless',
+  'Lloyds Metals & Energy',
+  'Nuvoco Vistas Corporation',
+  'Wonder Cement',
+  'India Cements',
 ]
 
 /**

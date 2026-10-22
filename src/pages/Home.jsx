@@ -11,7 +11,7 @@ import {
   Tilt,
   StatsBand,
 } from '../components/ui.jsx'
-import { COMPANY, FEATURED, PILLARS, INDUSTRIES, PROCESS, MATERIALS } from '../data/site.js'
+import { COMPANY, FEATURED, PILLARS, CLIENTS, PROCESS, MATERIALS } from '../data/site.js'
 
 function HeroMaterialsShowcase() {
   const [index, setIndex] = useState(0)
@@ -283,7 +283,6 @@ function TrustStrip() {
       if (!footer) return
 
       const rect = footer.getBoundingClientRect()
-      // When footer scrolls into view, stop cleanly 20px above its top edge
       const overlapWithFooter = window.innerHeight - rect.top + 20
       const bottomPx = Math.max(16, overlapWithFooter)
 
@@ -318,24 +317,24 @@ function TrustStrip() {
           {/* Fixed label */}
           <div className="hidden shrink-0 items-center gap-2.5 border-r border-brand-100 bg-brand-50/70 px-5 md:flex">
             <span className="relative flex h-1.5 w-1.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-500 opacity-70" />
-              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand-600" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-70" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-600" />
             </span>
             <span className="whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.24em] text-brand-700">
-              Trusted across industries
+              Our Clients
             </span>
           </div>
 
-          {/* Running ticker */}
+          {/* Running client ticker */}
           <Marquee
-            items={INDUSTRIES}
+            items={CLIENTS}
             className="flex-1 [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]"
             render={(item) => (
-              <span className="group flex items-center gap-9 px-9 py-3.5">
-                <span className="whitespace-nowrap font-display text-base font-medium text-brand-500 transition-colors duration-300 group-hover:text-brand-800 md:text-lg">
+              <span className="group flex items-center gap-8 px-8 py-3.5">
+                <span className="whitespace-nowrap font-display text-base font-semibold text-ink-700 transition-colors duration-300 group-hover:text-brand-700 md:text-[15px]">
                   {item}
                 </span>
-                <span className="h-1.5 w-1.5 rounded-full bg-brand-300" />
+                <span className="h-1 w-1 rounded-full bg-brand-200" />
               </span>
             )}
           />
