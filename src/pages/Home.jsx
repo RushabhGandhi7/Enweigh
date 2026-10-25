@@ -11,7 +11,16 @@ import {
   Tilt,
   StatsBand,
 } from '../components/ui.jsx'
+import EnweighConveyor from '../components/EnweighConveyor.tsx'
 import { COMPANY, FEATURED, PILLARS, CLIENTS, PROCESS, MATERIALS } from '../data/site.js'
+
+const CONVEYOR_MATERIALS = [
+  { name: 'Cement Clinker & Aggregates', a: '#666761', b: '#b5b6ad' },
+  { name: 'Coal & Industrial Coke', a: '#1e1d1d', b: '#5b5a5a' },
+  { name: 'Glass Cullet & Raw Shards', a: '#4a9a58', b: '#a7d7ad' },
+  { name: 'Iron Ore & Hot Sinter', a: '#8b4939', b: '#c97860' },
+  { name: 'Limestone & Gypsum Rocks', a: '#9a6038', b: '#d7aa7e' },
+]
 
 function HeroMaterialsShowcase() {
   const [index, setIndex] = useState(0)
@@ -557,6 +566,9 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <div style={{ '--cv-top': '72px', '--cv-bottom': '96px' }}>
+        <EnweighConveyor materials={CONVEYOR_MATERIALS} />
+      </div>
       <MaterialsShowcaseSection />
       <TrustStrip />
       <FeaturedProducts />
