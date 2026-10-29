@@ -1,3 +1,5 @@
+import SiteImage from '../components/SiteImage.jsx'
+import ClientLogo from '../components/ClientLogo.jsx'
 import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
@@ -50,9 +52,12 @@ function HeroMaterialsShowcase() {
           {/* Animated Slide Frame */}
           <div className="relative h-[380px] w-full overflow-hidden sm:h-[430px] md:h-[460px] lg:h-[495px] xl:h-[505px]">
             <AnimatePresence mode="wait">
-              <motion.img
+              <SiteImage animated
                 key={current.id}
                 src={current.img}
+                sizes="(min-width: 1312px) 616px, (min-width: 1024px) 48vw, calc(100vw - 40px)"
+                loading="eager"
+                fetchPriority={index === 0 ? 'high' : 'auto'}
                 alt={current.name}
                 initial={{ opacity: 0, scale: 1.08 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -167,8 +172,11 @@ function HeroMaterialsShowcase() {
                   : 'border-brand-100 opacity-70 hover:border-brand-300 hover:opacity-100'
               }`}
             >
-              <img
+              <SiteImage
                 src={mat.thumb || mat.img}
+                variant="thumb"
+                sizes="(min-width: 1024px) 110px, 18vw"
+                loading="eager"
                 alt={mat.name}
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
@@ -227,8 +235,8 @@ function Hero() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="mt-5 max-w-lg text-base leading-relaxed text-ink-500 md:text-lg"
           >
-            Enweigh designs and builds industrial weigh feeders, belt weighers, apron feeders
-            and batch systems — closed-loop machines that keep cement, steel, chemical, glass
+            Enweigh designs and builds industrial weigh feeders, belt weighers, loss-in-weight feeders
+            and batch weighing systems — closed-loop machines that keep cement, steel, chemical, glass
             and foundry plants feeding at setpoint, shift after shift.
           </motion.p>
 
@@ -338,11 +346,9 @@ function TrustStrip() {
           <Marquee
             items={CLIENTS}
             className="flex-1 [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)]"
-            render={(item) => (
-              <span className="group flex items-center gap-8 px-8 py-3.5">
-                <span className="whitespace-nowrap font-display text-base font-semibold text-ink-700 transition-colors duration-300 group-hover:text-brand-700 md:text-[15px]">
-                  {item}
-                </span>
+            render={(item, index) => (
+              <span className="group flex h-[52px] items-center gap-8 px-8 md:h-[50.5px]" aria-hidden={index >= CLIENTS.length || undefined}>
+                <ClientLogo name={item} duplicate={index >= CLIENTS.length} />
                 <span className="h-1 w-1 rounded-full bg-brand-200" />
               </span>
             )}
@@ -367,7 +373,7 @@ function MaterialsShowcaseSection() {
               From abrasive clinker and high-temperature sinter to delicate glass shards and coal chunks, our systems are engineered around real plant bulk solids.
             </p>
           </div>
-          <Button to="/products" variant="secondary">View All 14 Systems</Button>
+          <Button to="/products" variant="secondary">View All 7 Systems</Button>
         </div>
 
         {/* 5 Material Cards Grid matching user's reference layout */}
@@ -379,8 +385,10 @@ function MaterialsShowcaseSection() {
                 className="group flex h-full flex-col overflow-hidden rounded-2xl border border-brand-100 bg-white shadow-sm transition-all duration-500 hover:border-brand-300 hover:shadow-[0_20px_45px_-20px_rgba(94,59,163,0.35)] hover:-translate-y-1"
               >
                 <div className="relative aspect-square overflow-hidden bg-brand-950">
-                  <img
+                  <SiteImage
                     src={mat.img}
+                    variant="card"
+                    sizes="(min-width: 1024px) 240px, (min-width: 640px) 45vw, calc(100vw - 40px)"
                     alt={mat.name}
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
@@ -438,7 +446,7 @@ function FeaturedProducts() {
               <SpotlightCard className="h-full">
                 <Link to={`/products?item=${p.slug}`} className="flex h-full flex-col">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-t-2xl">
-                    <img src={p.img} alt={p.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-[1.06]" />
+                    <SiteImage variant="card" sizes="(min-width: 1312px) 395px, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 40px)" src={p.gallery?.[0]?.thumb || p.img} alt={p.alt || p.name} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/card:scale-[1.06]" />
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-950/40 via-transparent to-transparent" />
                     <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-brand-700 shadow-sm backdrop-blur">
                       {p.category}
@@ -551,6 +559,12 @@ function CTA() {
               className="group inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-brand-700 shadow-[0_16px_40px_-16px_rgba(0,0,0,0.5)] transition-all duration-500 hover:-translate-y-0.5"
             >
               Call {COMPANY.phonePrimary}
+            </a>
+            <a
+              href={`tel:${COMPANY.phoneSecondaryRaw}`}
+              className="group inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-brand-700 shadow-[0_16px_40px_-16px_rgba(0,0,0,0.5)] transition-all duration-500 hover:-translate-y-0.5"
+            >
+              Call {COMPANY.phoneSecondary}
             </a>
             <Button to="/contact" variant="secondary" className="!border-white/30 !bg-white/10 !text-white hover:!bg-white/20">
               {COMPANY.email}

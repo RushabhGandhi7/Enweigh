@@ -1,3 +1,4 @@
+import SiteImage from './SiteImage.jsx'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -35,9 +36,12 @@ export default function HeroMaterialsShowcase({
           {/* Animated Slide Frame */}
           <div className={`relative ${frameHeight}`}>
             <AnimatePresence mode="wait">
-              <motion.img
+              <SiteImage animated
                 key={current.id}
                 src={current.img}
+                sizes="(min-width: 1312px) 616px, (min-width: 1024px) 48vw, calc(100vw - 40px)"
+                loading="eager"
+                fetchPriority={index === 0 ? 'high' : 'auto'}
                 alt={current.name}
                 initial={{ opacity: 0, scale: 1.08 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -152,8 +156,11 @@ export default function HeroMaterialsShowcase({
                   : 'border-brand-100 opacity-70 hover:border-brand-300 hover:opacity-100'
               }`}
             >
-              <img
+              <SiteImage
                 src={mat.thumb || mat.img}
+                variant="thumb"
+                sizes="(min-width: 1024px) 110px, 18vw"
+                loading="eager"
                 alt={mat.name}
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
               />

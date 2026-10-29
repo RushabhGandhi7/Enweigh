@@ -1,3 +1,4 @@
+import SiteImage from '../components/SiteImage.jsx'
 import { PageHeader, SectionLabel, Reveal, Button, StatsBand } from '../components/ui.jsx'
 import HeroMaterialsShowcase from '../components/HeroMaterialsShowcase.jsx'
 import { PILLARS, CAPABILITIES } from '../data/site.js'
@@ -45,7 +46,7 @@ export default function About() {
 
             <div className="mt-8 flex items-center gap-3">
               <span className="inline-flex items-center gap-2.5 rounded-full border border-brand-200 bg-brand-50/70 px-4 py-2 text-xs font-semibold text-brand-800 shadow-xs">
-                <img src="images/enweigh-mark.png" alt="Enweigh" className="h-4 w-auto object-contain" />
+                <SiteImage src="images/enweigh-mark.webp" alt="Enweigh" className="h-4 w-auto object-contain" />
                 Designed &amp; Built in Malad (West), Mumbai
               </span>
             </div>

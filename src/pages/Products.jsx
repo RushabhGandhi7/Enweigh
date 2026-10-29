@@ -1,3 +1,4 @@
+import SiteImage from '../components/SiteImage.jsx'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link, useSearchParams } from 'react-router-dom'
@@ -10,6 +11,9 @@ export default function Products() {
   const [active, setActive] = useState('All')
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedProduct, setSelectedProduct] = useState(null)
+  const [selectedImage, setSelectedImage] = useState(0)
+
+  useEffect(() => setSelectedImage(0), [selectedProduct])
 
   // Check if URL has a specific product requested (e.g. /products?item=weigh-feeder)
   useEffect(() => {
@@ -60,7 +64,7 @@ export default function Products() {
       <PageHeader
         eyebrow="Products & Systems"
         title="Engineered precision for material in motion."
-        lead="Fourteen industrial weighing, feeding, and batching systems. Every machine is custom-built to your material properties, feed rate, and automation architecture."
+        lead="Seven industrial weighing, feeding, and batching systems. Every machine is custom-built to your material properties, feed rate, and automation architecture."
       />
 
       <section className="relative py-10 md:py-14">
@@ -132,7 +136,7 @@ export default function Products() {
           {/* Product Grid */}
           <motion.div layout className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <AnimatePresence mode="popLayout">
-              {filtered.map((p) => (
+              {filtered.map((p, idx) => (
                 <motion.div
                   key={p.slug}
                   layout
@@ -148,10 +152,13 @@ export default function Products() {
                         onClick={() => setSelectedProduct(p)}
                         className="group/img relative aspect-[4/3] cursor-pointer overflow-hidden rounded-t-2xl"
                       >
-                        <img
-                          src={p.img}
-                          alt={p.name}
-                          loading="lazy"
+                        <SiteImage
+                          src={p.gallery?.[0]?.thumb || p.img}
+                          variant="card"
+                          sizes="(min-width: 1312px) 395px, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 40px)"
+                          fetchPriority={idx === 0 ? 'high' : 'auto'}
+                          alt={p.alt || p.name}
+                          loading={idx === 0 ? 'eager' : 'lazy'}
                           className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover/img:scale-105"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-brand-950/60 via-transparent to-transparent" />
@@ -249,7 +256,7 @@ export default function Products() {
           <Reveal className="mt-16 flex flex-col items-center gap-4 rounded-3xl border border-brand-100 bg-mist p-10 text-center">
             <h3 className="font-display text-2xl font-semibold text-ink-900">Custom Engineering Available</h3>
             <p className="max-w-xl text-sm leading-relaxed text-ink-500">
-              Need non-standard belt lengths, hazardous area ATEX enclosures, dual-speed extraction, or specialized high-abrasion manganese pan liners? We engineer from first principles.
+              Need non-standard belt lengths, custom load-cell assemblies, or application-specific extraction and dosing? We engineer from first principles.
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Button to="/contact?product=Custom%20Engineered%20System">Request Custom Solution</Button>
@@ -316,9 +323,11 @@ export default function Products() {
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-start">
                   {/* Product Image */}
                   <div className="relative w-full sm:w-52 md:w-60 h-44 sm:h-40 md:h-44 shrink-0 overflow-hidden rounded-2xl border border-brand-100 bg-brand-50/50 shadow-xs">
-                    <img
-                      src={selectedProduct.img}
-                      alt={selectedProduct.name}
+                    <SiteImage
+                      src={selectedProduct.gallery?.[selectedImage]?.img || selectedProduct.img}
+                      sizes="(min-width: 640px) 240px, calc(100vw - 64px)"
+                      loading="eager"
+                      alt={selectedProduct.gallery?.[selectedImage]?.alt || selectedProduct.alt || selectedProduct.name}
                       className="h-full w-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-950/40 via-transparent to-transparent pointer-events-none" />
@@ -365,6 +374,23 @@ export default function Products() {
                   </div>
                 </div>
 
+                {selectedProduct.gallery?.length > 0 && (
+                  <div className="mt-4 flex gap-2 overflow-x-auto pb-2" aria-label={`${selectedProduct.name} photos`}>
+                    {selectedProduct.gallery.map((photo, index) => (
+                      <button
+                        key={photo.img}
+                        type="button"
+                        onClick={() => setSelectedImage(index)}
+                        aria-label={`View ${photo.alt}`}
+                        aria-pressed={selectedImage === index}
+                        className={`h-20 w-24 shrink-0 overflow-hidden rounded-xl border-2 ${selectedImage === index ? 'border-brand-600' : 'border-brand-100'}`}
+                      >
+                        <SiteImage variant="thumb" sizes="96px" src={photo.thumb} alt={photo.alt} loading="lazy" width={photo.width} height={photo.height} className="h-full w-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                )}
+
                 {/* Official Engineering Brochure Banner (if applicable) */}
                 {selectedProduct.slug === 'weigh-feeder' && (
                   <div className="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded-2xl border border-brand-200 bg-gradient-to-r from-brand-50/90 via-white to-brand-50/60 p-3.5 shadow-xs">
@@ -376,11 +402,11 @@ export default function Products() {
                       </div>
                       <div>
                         <p className="text-xs font-bold text-brand-900">Official Belt Weigh Feeder Brochure</p>
-                        <p className="text-[11px] text-ink-500">4-page mechanical &amp; electrical engineering PDF (220 KB)</p>
+                        <p className="text-[11px] text-ink-500">4-page engineering PDF · 20 Nov 2024 · 5.1 MB</p>
                       </div>
                     </div>
                     <a
-                      href="downloads/enweigh-belt-weigh-feeder-brochure.pdf"
+                      href="/downloads/enweigh-weigh-feeder-2024-11-20.pdf"
                       download
                       className="inline-flex items-center gap-1.5 rounded-lg bg-brand-700 px-3.5 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-brand-800 transition-colors shrink-0"
                     >
@@ -401,11 +427,11 @@ export default function Products() {
                       </div>
                       <div>
                         <p className="text-xs font-bold text-brand-900">Turnkey Batching Systems Brochure</p>
-                        <p className="text-[11px] text-ink-500">Comprehensive plant batching &amp; mixing PDF (4.5 MB)</p>
+                        <p className="text-[11px] text-ink-500">4-page plant batching &amp; mixing PDF</p>
                       </div>
                     </div>
                     <a
-                      href="downloads/enweigh-batching-systems-brochure.pdf"
+                      href="/downloads/enweigh-batching-plants-brochure.pdf"
                       download
                       className="inline-flex items-center gap-1.5 rounded-lg bg-brand-700 px-3.5 py-1.5 text-xs font-semibold text-white shadow-xs hover:bg-brand-800 transition-colors shrink-0"
                     >

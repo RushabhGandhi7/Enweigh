@@ -47,11 +47,10 @@ export default function Downloads() {
                     <p className="mt-3 text-sm leading-relaxed text-ink-600">
                       {b.desc}
                     </p>
+                    {b.date && <p className="mt-2 text-xs text-ink-500">Published: {b.date}</p>}
 
                     <div className="mt-6 flex flex-wrap gap-2 text-xs font-medium text-brand-700">
-                      <span className="rounded-lg bg-white/80 px-3 py-1.5 shadow-sm">Mechanical Characteristics</span>
-                      <span className="rounded-lg bg-white/80 px-3 py-1.5 shadow-sm">Microprocessor Controller</span>
-                      <span className="rounded-lg bg-white/80 px-3 py-1.5 shadow-sm">7" Color HMI</span>
+                      {b.tags.map((tag) => <span key={tag} className="rounded-lg bg-white/80 px-3 py-1.5 shadow-sm">{tag}</span>)}
                     </div>
                   </div>
 
@@ -116,6 +115,7 @@ export default function Downloads() {
                     <p className="mt-2 text-sm leading-relaxed text-ink-500">
                       {d.desc}
                     </p>
+                    {d.date && <p className="mt-2 text-xs text-ink-500">Published: {d.date}</p>}
                   </div>
 
                   <div className="mt-6 flex items-center justify-between border-t border-brand-50 pt-4">

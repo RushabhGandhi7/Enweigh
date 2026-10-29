@@ -8,5 +8,274 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/products/apron-feeder/:path*",
+      "destination": "/products",
+      "statusCode": 301
+    },
+    {
+      "source": "/apron-feeder/:path*",
+      "destination": "/products",
+      "statusCode": 301
+    },
+    {
+      "source": "/products",
+      "has": [
+        {
+          "type": "query",
+          "key": "item",
+          "value": "apron-feeder"
+        }
+      ],
+      "destination": "/products?item=",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/bagging-machine/:path*",
+      "destination": "/products",
+      "statusCode": 301
+    },
+    {
+      "source": "/bagging-machine/:path*",
+      "destination": "/products",
+      "statusCode": 301
+    },
+    {
+      "source": "/products",
+      "has": [
+        {
+          "type": "query",
+          "key": "item",
+          "value": "bagging-machine"
+        }
+      ],
+      "destination": "/products?item=",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/furnace-feeder/:path*",
+      "destination": "/products",
+      "statusCode": 301
+    },
+    {
+      "source": "/furnace-feeder/:path*",
+      "destination": "/products",
+      "statusCode": 301
+    },
+    {
+      "source": "/products",
+      "has": [
+        {
+          "type": "query",
+          "key": "item",
+          "value": "furnace-feeder"
+        }
+      ],
+      "destination": "/products?item=",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/hot-air-generator/:path*",
+      "destination": "/products",
+      "statusCode": 301
+    },
+    {
+      "source": "/hot-air-generator/:path*",
+      "destination": "/products",
+      "statusCode": 301
+    },
+    {
+      "source": "/products",
+      "has": [
+        {
+          "type": "query",
+          "key": "item",
+          "value": "hot-air-generator"
+        }
+      ],
+      "destination": "/products?item=",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/coal-handling-system/:path*",
+      "destination": "/products",
+      "statusCode": 301
+    },
+    {
+      "source": "/coal-handling-system/:path*",
+      "destination": "/products",
+      "statusCode": 301
+    },
+    {
+      "source": "/products",
+      "has": [
+        {
+          "type": "query",
+          "key": "item",
+          "value": "coal-handling-system"
+        }
+      ],
+      "destination": "/products?item=",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/kiln-burner-system/:path*",
+      "destination": "/products",
+      "statusCode": 301
+    },
+    {
+      "source": "/kiln-burner-system/:path*",
+      "destination": "/products",
+      "statusCode": 301
+    },
+    {
+      "source": "/products",
+      "has": [
+        {
+          "type": "query",
+          "key": "item",
+          "value": "kiln-burner-system"
+        }
+      ],
+      "destination": "/products?item=",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/kiln-feeder-system/:path*",
+      "destination": "/products",
+      "statusCode": 301
+    },
+    {
+      "source": "/kiln-feeder-system/:path*",
+      "destination": "/products",
+      "statusCode": 301
+    },
+    {
+      "source": "/products",
+      "has": [
+        {
+          "type": "query",
+          "key": "item",
+          "value": "kiln-feeder-system"
+        }
+      ],
+      "destination": "/products?item=",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "(apron-feeder|Apron Feeder)"
+        }
+      ],
+      "destination": "/products?product=",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "(bagging-machine|Bagging Machine)"
+        }
+      ],
+      "destination": "/products?product=",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "(furnace-feeder|Furnace Feeder)"
+        }
+      ],
+      "destination": "/products?product=",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "(hot-air-generator|Hot Air Generator)"
+        }
+      ],
+      "destination": "/products?product=",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "(coal-handling-system|Coal Handling System)"
+        }
+      ],
+      "destination": "/products?product=",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "(kiln-burner-system|Kiln Burner System)"
+        }
+      ],
+      "destination": "/products?product=",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "(kiln-feeder-system|Kiln Feeder System)"
+        }
+      ],
+      "destination": "/products?product=",
+      "statusCode": 301
+    }
+  ],
+  "headers": [
+    {
+      "source": "/images/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/downloads/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/fonts/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
+      ]
+    }
   ]
 }

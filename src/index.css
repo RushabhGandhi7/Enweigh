@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './fonts.css';
 
 @theme {
   /* Brand purple — extracted from the Enweigh logo (#3E2D63 family) */

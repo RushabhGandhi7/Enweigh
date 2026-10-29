@@ -1,3 +1,4 @@
+import SiteImage from './SiteImage.jsx'
 import { Link } from 'react-router-dom'
 import { COMPANY, NAV, INDUSTRIES } from '../data/site.js'
 
@@ -10,8 +11,8 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-4">
             <Link to="/" className="group inline-flex items-center">
-              <img
-                src="images/enweigh-logo-left-aligned-white.png"
+              <SiteImage
+                src="images/enweigh-logo-left-aligned-white.webp"
                 alt="Enweigh India Pvt. Ltd."
                 className="h-10 sm:h-11 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105 brightness-100"
               />
@@ -52,6 +53,9 @@ export default function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-brand-100/80">
               <li>
                 <a href={`tel:${COMPANY.phonePrimaryRaw}`} className="transition-colors hover:text-white">{COMPANY.phonePrimary}</a>
+              </li>
+              <li>
+                <a href={`tel:${COMPANY.phoneSecondaryRaw}`} className="transition-colors hover:text-white">{COMPANY.phoneSecondary}</a>
               </li>
               <li>
                 <a href={`mailto:${COMPANY.email}`} className="transition-colors hover:text-white">{COMPANY.email}</a>

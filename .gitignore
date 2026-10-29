@@ -5,6 +5,10 @@ node_modules/
 # Build output (Vercel builds from source)
 dist/
 
+# Supplied source media: publish only curated, optimized copies.
+ENWEIGH PHOTOS & CATALOGUES/
+.asset-originals/
+
 # Environment variables
 .env
 .env.local

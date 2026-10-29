@@ -21,7 +21,7 @@ export default function Contact() {
   // Pre-fill interest if passed in query param (e.g. /contact?product=Weigh%20Feeder)
   useEffect(() => {
     const productParam = searchParams.get('product')
-    if (productParam) {
+    if (productParam && (PRODUCTS.some((p) => p.name === productParam || p.slug === productParam) || productParam === 'Custom Engineered System')) {
       setForm((prev) => ({ ...prev, interest: productParam }))
     }
   }, [searchParams])
@@ -98,14 +98,17 @@ export default function Contact() {
   }
 
   const detailItems = [
-    {
+    ...[
+      { value: COMPANY.phonePrimary, raw: COMPANY.phonePrimaryRaw },
+      { value: COMPANY.phoneSecondary, raw: COMPANY.phoneSecondaryRaw },
+    ].map((phone) => ({
       label: 'Call Direct',
-      value: COMPANY.phonePrimary,
-      href: `tel:${COMPANY.phonePrimaryRaw}`,
+      value: phone.value,
+      href: `tel:${phone.raw}`,
       icon: (
         <path d="M4 3h3l1.5 4L7 8.5a11 11 0 0 0 5.5 5.5l1.5-1.5 4 1.5v3a1 1 0 0 1-1 1A15 15 0 0 1 3 4a1 1 0 0 1 1-1z" />
       ),
-    },
+    })),
     {
       label: 'Official WhatsApp',
       value: `${COMPANY.whatsapp} (Instant Technical RFQ)`,
@@ -159,7 +162,7 @@ export default function Contact() {
 
             <div className="mt-8 space-y-4">
               {detailItems.map((d, i) => (
-                <Reveal key={d.label} delay={i * 0.07} y={18}>
+                <Reveal key={d.href || d.label} delay={i * 0.07} y={18}>
                   <a
                     href={d.href || '#contact'}
                     target={d.href?.startsWith('http') ? '_blank' : undefined}

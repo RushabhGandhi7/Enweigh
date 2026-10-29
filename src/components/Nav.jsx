@@ -1,14 +1,18 @@
+import SiteImage from './SiteImage.jsx'
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { COMPANY, NAV } from '../data/site.js'
 
 function LogoMark() {
+  const { pathname } = useLocation()
   return (
     <Link to="/" className="group flex items-center">
-      <img
-        src="images/enweigh-logo-left-aligned.png"
+      <SiteImage
+        src="images/enweigh-logo-left-aligned.webp"
         alt="Enweigh India Pvt. Ltd."
+        loading="eager"
+        fetchPriority={['/contact', '/downloads'].includes(pathname) ? 'high' : 'auto'}
         className="h-9 sm:h-10 md:h-[42px] w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-xs"
       />
     </Link>
@@ -139,6 +143,9 @@ export default function Nav() {
             <div className="space-y-2">
               <a href={`tel:${COMPANY.phonePrimaryRaw}`} className="block font-mono text-sm text-brand-600">
                 {COMPANY.phonePrimary}
+              </a>
+              <a href={`tel:${COMPANY.phoneSecondaryRaw}`} className="block font-mono text-sm text-brand-600">
+                {COMPANY.phoneSecondary}
               </a>
               <a href={`mailto:${COMPANY.email}`} className="block font-mono text-sm text-ink-500">
                 {COMPANY.email}

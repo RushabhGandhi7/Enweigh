@@ -1,7 +1,10 @@
+import SiteImage from '../components/SiteImage.jsx'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { PageHeader, Reveal } from '../components/ui.jsx'
 import { GALLERY } from '../data/site.js'
+
+const categories = [...new Set(GALLERY.map((photo) => photo.category))]
 
 export default function Gallery() {
   const [selected, setSelected] = useState(null)
@@ -27,18 +30,26 @@ export default function Gallery() {
 
       <section className="relative py-10 md:py-14">
         <div className="container-x">
+          {categories.map((category) => (
+          <div key={category} className="mb-12 last:mb-0">
+          <h2 className="mb-6 font-display text-2xl font-semibold text-ink-900">{category}</h2>
           <div className="columns-1 gap-6 sm:columns-2 lg:columns-3 [&>*]:mb-6">
-            {GALLERY.map((g, i) => (
-              <Reveal key={g.name} delay={(i % 3) * 0.06} y={28}>
+            {GALLERY.filter((g) => g.category === category).map((g, i) => (
+              <Reveal key={g.img} delay={(i % 3) * 0.06} y={28}>
                 <button
                   onClick={() => setSelected(g)}
                   className="group relative block w-full overflow-hidden rounded-2xl border border-brand-100 bg-white text-left shadow-[0_10px_30px_-18px_rgba(62,45,99,0.35)] transition-all duration-500 hover:shadow-[0_28px_60px_-28px_rgba(94,59,163,0.45)]"
                 >
                   <div className="relative overflow-hidden">
-                    <img
-                      src={g.img}
-                      alt={g.name}
-                      loading="lazy"
+                    <SiteImage
+                      src={g.thumb || g.img}
+                      variant="card"
+                      sizes="(min-width: 1312px) 395px, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, calc(100vw - 40px)"
+                      fetchPriority={i === 0 && category === categories[0] ? 'high' : 'auto'}
+                      alt={g.alt || g.name}
+                      width={g.width}
+                      height={g.height}
+                      loading={i === 0 && category === categories[0] ? 'eager' : 'lazy'}
                       className="w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-950/60 via-transparent to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
@@ -58,6 +69,8 @@ export default function Gallery() {
               </Reveal>
             ))}
           </div>
+          </div>
+          ))}
         </div>
       </section>
 
@@ -80,7 +93,7 @@ export default function Gallery() {
               onClick={(e) => e.stopPropagation()}
               className="relative max-h-[85vh] max-w-4xl overflow-hidden rounded-2xl bg-white shadow-2xl"
             >
-              <img src={selected.img} alt={selected.name} className="max-h-[70vh] w-full object-contain" />
+              <SiteImage sizes="(min-width: 960px) 896px, calc(100vw - 48px)" loading="eager" src={selected.img} alt={selected.alt || selected.name} className="max-h-[70vh] w-full object-contain" />
               <div className="flex items-center justify-between gap-4 p-5">
                 <div>
                   <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-500">{selected.category}</p>
