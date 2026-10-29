@@ -1,4 +1,4 @@
-import SiteImage from './SiteImage.jsx'
+import BrandLogo from './BrandLogo.jsx'
 import { Link } from 'react-router-dom'
 import { COMPANY, NAV, INDUSTRIES } from '../data/site.js'
 
@@ -10,12 +10,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 pb-14 md:grid-cols-12">
           {/* Brand */}
           <div className="md:col-span-4">
-            <Link to="/" className="group inline-flex items-center">
-              <SiteImage
-                src="images/enweigh-logo-left-aligned-white.webp"
-                alt="Enweigh India Pvt. Ltd."
+            <Link to="/" className="group inline-flex items-center gap-2.5">
+              <BrandLogo
                 className="h-10 sm:h-11 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105 brightness-100"
               />
+              <span aria-hidden="true" className="flex flex-col text-brand-100">
+                <span className="text-lg font-bold leading-tight tracking-wide">ENWEIGH</span>
+                <span className="text-[10px] font-semibold leading-tight tracking-[0.08em]">INDIA PVT. LTD.</span>
+              </span>
             </Link>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-brand-200/80">
               Precision weighing &amp; feeding systems for cement, steel, chemical, glass,

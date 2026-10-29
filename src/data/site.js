@@ -15,13 +15,13 @@ export const COMPANY = {
   whatsappRaw: '919869264635',
   address: 'A 810, Jaswanti Business Center, Kanchpada, Malad (West), Mumbai — 400064, Maharashtra, India',
   website: 'www.enweigh.in',
-  logo: 'images/enweigh-logo.webp',
-  logoMark: 'images/enweigh-mark.webp',
-  logoHorizontal: 'images/enweigh-logo-horizontal.webp',
-  logoWhite: 'images/enweigh-logo-white.webp',
-  logoMarkWhite: 'images/enweigh-mark-white.webp',
-  logoLeftAligned: 'images/enweigh-logo-left-aligned.webp',
-  logoLeftAlignedWhite: 'images/enweigh-logo-left-aligned-white.webp',
+  logo: '/images/logo/enweigh-logo.svg',
+  logoMark: '/images/logo/enweigh-logo.svg',
+  logoHorizontal: '/images/logo/enweigh-logo.svg',
+  logoWhite: '/images/logo/enweigh-logo.svg',
+  logoMarkWhite: '/images/logo/enweigh-logo.svg',
+  logoLeftAligned: '/images/logo/enweigh-logo.svg',
+  logoLeftAlignedWhite: '/images/logo/enweigh-logo.svg',
 }
 
 export const NAV = [
