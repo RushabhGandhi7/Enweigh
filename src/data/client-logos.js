@@ -1,5 +1,19 @@
 // Downloaded from official company sites; source URLs retained for provenance.
 export const CLIENT_LOGOS = {
+  "Wonder Cement": {
+    "src": "/images/clients/wonder-cement.svg",
+    "width": 537.91,
+    "height": 212.83,
+    "source": "https://fortunate-blessing-1546ad1ae4.strapiapp.com/uploads/WCL_SVG_Logo_White_a2a3272a47.svg",
+    "bytes": 6695
+  },
+  "Ambuja Cements": {
+    "src": "/images/clients/ambuja-cements.webp",
+    "width": 76,
+    "height": 64,
+    "source": "https://www.ambujacement.com/-/media/Project/AmbujaLimited/Common/Logo/Ambuja-Footer-1.ashx",
+    "bytes": 5542
+  },
   "Tata Steel": {
     "src": "/images/clients/tata-steel.svg",
     "width": 160,
